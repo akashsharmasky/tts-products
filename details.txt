@@ -1,0 +1,15 @@
+Demo Server Details:
+==============================================
+Url = http://demo.demotoday.info/tts-products
+
+FTP Details:
+Host        = demo.demotoday.info 119.82.68.252
+User Name    = tts-products
+Password    = tts-products
+
+
+DB Details:
+DB Url        = http://demo.demotoday.info/phpmyadmin                
+DB Name        = tts-products
+User Name    = tts-products
+Password    = PhEhP0Megot8BMVq

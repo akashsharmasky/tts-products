@@ -1,0 +1,1 @@
+/home/tts-products/app/design/frontend/Ttsproducts/Theme/Magento_Search/web/form-mini.js

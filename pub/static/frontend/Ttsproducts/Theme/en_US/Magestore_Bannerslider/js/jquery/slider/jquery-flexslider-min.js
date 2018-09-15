@@ -1,0 +1,1 @@
+/home/tts-products/app/code/Magestore/Bannerslider/view/frontend/web/js/jquery/slider/jquery-flexslider-min.js

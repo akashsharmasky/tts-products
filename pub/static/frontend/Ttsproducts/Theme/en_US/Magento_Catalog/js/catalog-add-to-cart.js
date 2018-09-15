@@ -1,0 +1,1 @@
+/home/tts-products/app/design/frontend/Ttsproducts/Theme/Magento_Catalog/web/js/catalog-add-to-cart.js

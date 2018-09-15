@@ -1,0 +1,90 @@
+
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<small class="copyright">
+    <span><?= /* @escapeNotVerified */ $block->getCopyright() ?></span>
+</small>
+
+<?php /*
+	<script type="text/javascript">
+	require(['jquery'], function ($) {
+	
+    	$( ".page-title-wrapper" ).insertBefore( $( ".cms-page-view .breadcrumbs .items,.blog .breadcrumbs .items,.page-products .breadcrumbs .items,.contact-index-index .breadcrumbs .items" ) );
+	
+			
+		});
+	</script>
+*/ ?>
+
+
+<script type="text/javascript">
+require(['jquery'], function ($) {
+	jQuery(document).ready(function () {
+		if(jQuery(window).width() < 768){
+			jQuery(".footer-link .footer-links").hide();
+			jQuery(".footer-title").click(function(){	
+				jQuery(".footer-title").removeClass('togle-sidenav-footer');
+				jQuery(this).toggleClass('sign');	
+				jQuery(this).addClass('togle-sidenav-footer');	
+				jQuery('.togle-sidenav-footer').next().slideToggle();
+			});
+		}
+	});
+});
+</script>
+
+<script type="text/javascript">
+require(['jquery'], function ($) {
+	jQuery(window).load(function(){
+		var win = jQuery(window).width();
+		if(win < 1024){
+			jQuery( ".col-freshipping" ).insertAfter(jQuery( ".topleft" ));
+		} else {
+		jQuery( ".col-freshipping" ).insertAfter(jQuery( "#ui-id-2" ));	
+		}
+	});
+	jQuery(window).resize(function(){
+		var win = jQuery(window).width();
+		if(win < 1024){
+		jQuery( ".col-freshipping" ).insertAfter(jQuery( ".topleft" ));
+		} 
+		else {
+		jQuery( ".col-freshipping" ).insertAfter(jQuery( "#ui-id-2" ));
+		}
+	});
+});
+</script>
+
+<script type="text/javascript">
+require(['jquery'], function ($) {
+	jQuery(window).load(function(){
+		var win = jQuery(window).width();
+		if(win < 768){
+			jQuery(".block.filter dl dd").hide();
+			jQuery(".block.filter dl dt").click(function(){	
+				jQuery(".block.filter dl dt").removeClass('togle-sidenav-left');
+				jQuery(this).toggleClass('active');	
+				jQuery(this).addClass('togle-sidenav-left');	
+				jQuery('.togle-sidenav-left').next().slideToggle();
+			});
+		}
+	});
+	jQuery(window).resize(function(){
+		var win = jQuery(window).width();
+		if(win < 768){
+			jQuery(".block.filter dl dd").hide();
+			jQuery(".block.filter dl dt").click(function(){	
+				jQuery(".block.filter dl dt").removeClass('togle-sidenav-left');
+				jQuery(this).toggleClass('active');	
+				jQuery(this).addClass('togle-sidenav-left');	
+				jQuery('.togle-sidenav-left').next().slideToggle();
+			});
+		} 
+		
+	});
+});
+</script>

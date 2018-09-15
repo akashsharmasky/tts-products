@@ -1,0 +1,1 @@
+/home/tts-products/lib/web/mage/requirejs/resolver.js

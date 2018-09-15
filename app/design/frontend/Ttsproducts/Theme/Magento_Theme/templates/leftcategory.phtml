@@ -1,0 +1,38 @@
+<?php 
+	$objectManager =  \Magento\Framework\App\ObjectManager::getInstance(); 
+	$categoryFactory = $objectManager->get('\Magento\Catalog\Model\CategoryFactory');
+	$categoryHelper = $objectManager->get('\Magento\Catalog\Helper\Category');
+	$categoryRepository = $objectManager->get('\Magento\Catalog\Model\CategoryRepository');
+	 
+	$categoryId = 4; 
+	$category = $categoryFactory->create()->load($categoryId);
+	 
+	$parentCategories = $category->getParentCategories();
+	$childrenCategories = $category->getChildrenCategories();
+	 
+	$storeCategories = $categoryHelper->getStoreCategories();
+
+	echo '<ul class="category-navigation ggg">';
+	foreach ($childrenCategories as $subcat) {
+		$subcatId=$subcat->getId();
+		if($subcat->getIsActive()) {
+		$subcategory = $categoryFactory->create()->load($subcatId);
+		$subcatchildren = $subcategory->getChildrenCategories();
+		$caturl = $subcat->getUrl();
+		$name=$subcat->getName();
+		echo '<li cid="'.$subcatId.'"><a href="'.$caturl.'">'.$name.'</a>';
+		if(count($subcatchildren)>0){
+			echo '<i class="fa fa-angle-right parent-category" aria-hidden="true"></i>';
+			echo '<ul class="subcategory">';
+			foreach ($subcatchildren as $subsubcat) {
+				if($subsubcat->getIsActive()) {
+				  echo '<li><a href="'.$subsubcat->getUrl().'">'.$subsubcat->getName().'</a></li>';
+				}
+			}
+			echo '</ul>';
+		}
+		echo '</li>';
+	 }
+	}
+	echo '</ul>';
+	?> 

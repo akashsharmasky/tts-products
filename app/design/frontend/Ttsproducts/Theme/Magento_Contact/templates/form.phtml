@@ -1,0 +1,62 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+/** @var \Magento\Contact\Block\ContactForm $block */
+?>
+<div class="form_contact-cls">
+<form class="form contact"
+      action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+      id="contact-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= $block->escapeHtml(__('SUBMIT YOUR ENQUIRY HERE')) ?></span></legend> 
+        <?php /*<div class="field note no-label"><?= $block->escapeHtml(__('Jot us a note and we’ll get back to you as quickly as possible.')) ?></div> */?>
+        <div class="field name required">
+            <?php /* <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label> */?>
+            <div class="control">
+                <input name="name" id="name" title="<?= $block->escapeHtmlAttr(__('Name')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('name') ?: $this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" placeholder="Name" class="input-text" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field email required">
+            <?php /* <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label> */ ?>
+            <div class="control">
+                <input name="email" id="email" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('email') ?: $this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" placeholder="Email" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+            </div>
+        </div>
+        <div class="field telephone">
+            <?php /* <label class="label" for="telephone"><span><?= $block->escapeHtml(__('Phone Number')) ?></span></label> */?>
+            <div class="control">
+                <input name="telephone" id="telephone" title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('telephone')) ?>" placeholder="Phone Number" class="input-text" type="text" />
+            </div>
+        </div>		
+		<div class="field subject">
+            <?php /* <label class="label" for="email"><span><?= $block->escapeHtml(__('Subject')) ?></span></label> */ ?>
+            <div class="control">
+                <input name="subject" id="subject" title="<?= $block->escapeHtmlAttr(__('Subject')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('subject') ?: $this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" placeholder="Subject" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+            </div>
+        </div>
+        <div class="field comment required">
+            <?php /* <label class="label" for="comment"><span><?= $block->escapeHtml(__('What’s on your mind?')) ?></span></label> */?>
+            <div class="control">
+                <textarea name="comment" id="comment" title="<?= $block->escapeHtmlAttr(__('What’s on your mind?')) ?>" placeholder="Message" class="input-text" cols="5" rows="3" data-validate="{required:true}"><?= $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getPostValue('comment')) ?></textarea>
+            </div>
+        </div>
+        <?= $block->getChildHtml('form.additional.info') ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Send Message')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Send Message')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>
+</div>
+

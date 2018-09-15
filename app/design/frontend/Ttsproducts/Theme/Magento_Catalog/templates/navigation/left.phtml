@@ -1,0 +1,111 @@
+<?php
+$objectManager =  \Magento\Framework\App\ObjectManager::getInstance(); 
+$categoryFactory = $objectManager->get('\Magento\Catalog\Model\CategoryFactory');
+$categoryHelper = $objectManager->get('\Magento\Catalog\Helper\Category');
+$categoryRepository = $objectManager->get('\Magento\Catalog\Model\CategoryRepository');
+ 
+$categoryId = 26; 
+$category = $categoryFactory->create()->load($categoryId);
+ 
+$parentCategories = $category->getParentCategories();
+$childrenCategories = $category->getChildrenCategories();
+ 
+$storeCategories = $categoryHelper->getStoreCategories();
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Category left navigation
+ *
+ * @var $block \Magento\Catalog\Block\Navigation
+ */
+?>
+<?php if (!$block->getCategory()) {
+    return;
+} ?>
+<?php $_categories = $block->getCurrentChildCategories(); ?>
+<?php $_count = is_array($_categories) ? count($_categories) : $_categories->count(); ?>
+<?php if ($_count): ?>
+    <div class="block filter">
+        <?php /* <div class="title">
+            <strong><?= __('Shop By') ?></strong>
+        </div> */ ?>
+        <div class="content">
+            <strong class="subtitle"><?= /* @escapeNotVerified */ __('Shopping Options') ?></strong>
+            <dl class="options" id="narrow-by-list2">
+                <dt><?= /* @escapeNotVerified */ __('Category') ?></dt>
+                <dd>
+                    <ul class="items">
+                        <?php $catcount=1; foreach ($_categories as $_category): ?>
+                            <?php if ($_category->getIsActive()): ?>
+							    <?php
+								    if($catcount==18){
+										echo '</ul><ul class="items cat_viewall hidenavcat">';
+					                    echo '<li class="item"><a href="'.$block->getCategoryUrl($_category).'">'.$block->escapeHtml($_category->getName()).'</a>';
+									}else{
+								?>
+                                <li class="item">
+                                    <a href="<?= /* @escapeNotVerified */ $block->getCategoryUrl($_category) ?>"<?php if ($block->isCategoryActive($_category)): ?> class="current"<?php endif; ?>><?= $block->escapeHtml($_category->getName()) ?></a>
+                                </li>
+									<?php } ?>
+                            <?php $catcount++; endif; ?>
+                        <?php endforeach ?>
+                    </ul>
+					<?php if($catcount>18) { ?>
+                    <div class="view-all-category catviewall"><a href="javascript:void(0)" id="catv"><?= /* @escapeNotVerified */ __('View All'); ?></a></div>
+					<?php } ?>
+                </dd>
+            </dl>
+        </div>
+    </div>
+<?php endif; ?>
+<div class="block filter">
+   <div class="content">
+   	<dl class="options" id="narrow-by-list-brand">
+   		<dt><?= /* @escapeNotVerified */ __('Shop By Brand') ?></dt>
+   		<dd>
+	   	<ul class="items">
+	      <?php
+		     $brandcount=1;
+             foreach ($childrenCategories as $subcat) {
+				$subcatId=$subcat->getId();
+				$subcategory = $categoryFactory->create()->load($subcatId);
+				$subcatchildren = $subcategory->getChildrenCategories();
+				$caturl = $subcat->getUrl();
+				$name=$subcat->getName();
+				if($brandcount==8){
+					echo '</ul><ul class="brand_viewall items hidebrand">';
+					echo '<li class="item"><a href="'.$caturl.'">'.$name.'</a>';
+				}else{
+					echo '<li class="item"><a href="'.$caturl.'">'.$name.'</a>';
+				}
+				if(count($subcatchildren)>0){
+					echo '<i class="fa fa-angle-right" aria-hidden="true"></i>';
+					echo '<ul class="subcategory">';
+					foreach ($subcatchildren as $subsubcat) {
+						echo '<li><a href="'.$subsubcat->getUrl().'">'.$subsubcat->getName().'</a></li>';
+					}
+					echo '</ul>';
+				}
+				echo '</li>';
+				$brandcount++;
+			}		  
+		  ?>
+	   </ul>
+	   <?php if($brandcount>8) { ?>
+	   <div class="view-all-brand brandviewall"><a href="javascript:void(0)" id="brandv"><?= /* @escapeNotVerified */ __('View All'); ?></a></div>
+	   <?php } ?>
+	</dd>
+	</dl>
+   </div>
+</div>
+<style>
+  .hidebrand { display:none; }
+  .showbrand { display:block; }
+  .hidenavcat { display:none; }
+  .shownavcat { display:block; }
+</style>

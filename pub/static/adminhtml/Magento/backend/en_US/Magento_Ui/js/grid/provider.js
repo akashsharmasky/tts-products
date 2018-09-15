@@ -1,0 +1,1 @@
+/home/tts-products/vendor/magento/module-ui/view/base/web/js/grid/provider.js

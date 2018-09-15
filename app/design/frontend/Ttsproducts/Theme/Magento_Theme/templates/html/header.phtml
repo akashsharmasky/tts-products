@@ -1,0 +1,130 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header $block
+ */
+$welcomeMessage = $block->getWelcome();
+?>
+<?php $_loggedin = $this->helper('Magento\Checkout\Helper\Cart')->getCart()->getCustomerSession()->isLoggedIn(); ?>
+
+<?php if( $_loggedin ) : ?>
+
+     <li><a href="<?php echo $this->getUrl('customer/account/create'); ?>">My Account</a> | </li>
+
+<?php endif; ?>
+<?php switch ($block->getShowPart()):
+    case 'welcome': ?>
+       <?php /* <li class="greet welcome" data-bind="scope: 'customer'">
+            <!-- ko if: customer().fullname  -->
+            <span data-bind="text: new String('<?= $block->escapeHtml(__('Welcome, %1!', '%1')) ?>').replace('%1', customer().firstname)">
+            </span>
+            <!-- /ko -->
+            <!-- ko ifnot: customer().fullname  -->
+            <span data-bind='html:"<?= $block->escapeHtmlAttr($welcomeMessage) ?>"'></span>
+            <?= $block->getBlockHtml('header.additional') ?>
+            <!-- /ko -->
+        </li> */ ?>
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "customer": {
+                            "component": "Magento_Customer/js/view/customer"
+                        }
+                    }
+                }
+            }
+        }
+        </script>
+    <?php break; ?>
+
+    <?php case 'other': ?>
+        <?= $block->getChildHtml() ?>
+    <?php break; ?>
+
+<?php endswitch; ?>
+<script>
+    require(['jquery'],function(jQuery){
+        jQuery(document).ready(function(){
+			if(jQuery("body").hasClass("cms-home")){
+			} else {
+				jQuery('.left-category-navigation-content').addClass("hidecat");
+			}
+			jQuery(document).on("click",".category-title",function() {
+				if(jQuery(".left-category-navigation-content").hasClass("hidecat")){
+					jQuery('.left-category-navigation-content').removeClass("hidecat");
+				}else{
+					jQuery('.left-category-navigation-content').addClass("hidecat");
+				}
+			});
+			jQuery(document).on("click",".parent-category",function() {
+				if(jQuery(this).siblings('ul').hasClass("active")){
+					jQuery(this).siblings('ul').removeClass("active");
+				}else{
+					jQuery(this).siblings('ul').addClass("active");
+				}
+			});
+			if(jQuery("body").hasClass("cms-about-us")){
+				jQuery('.navigation ul li:nth-child(2)').addClass("active");
+			}
+			if(jQuery("body").hasClass("catalog-product-view")){
+				var title = jQuery('.page-title span').html();
+				jQuery(".product-info-price").prepend( '<h1 class="product-page-title">'+ title +'</h1>' );
+				jQuery('.page-title').html('Product');
+			}
+			jQuery(document).on("click",".brandviewall",function() {
+				if(jQuery(".brand_viewall").hasClass("hidebrand")){
+					jQuery('.brand_viewall').removeClass("hidebrand");
+					jQuery('.brand_viewall').addClass("showbrand");
+					jQuery('#brandv').html("Less");
+				}else{
+					jQuery('.brand_viewall').removeClass("showbrand");
+					jQuery('.brand_viewall').addClass("hidebrand");
+					jQuery('#brandv').html("View All");
+				}
+			});
+			jQuery(document).on("click",".catviewall",function() {
+				if(jQuery(".cat_viewall").hasClass("hidenavcat")){
+					jQuery('.cat_viewall').removeClass("hidenavcat");
+					jQuery('.cat_viewall').addClass("shownavcat");
+					jQuery('#catv').html("Less");
+				}else{
+					jQuery('.cat_viewall').removeClass("shownavcat");
+					jQuery('.cat_viewall').addClass("hidenavcat");
+					jQuery('#catv').html("View All");
+				}
+			});
+        });
+		
+    });
+</script>
+
+
+
+<script>
+	jQuery(window).load(function() { 
+		require(['jquery'],function(jQuery){
+			var viewportWidth = jQuery(window).width();
+			if (viewportWidth <= 767) {          
+				jQuery('.page-products .sidebar.sidebar-main').insertBefore('.page-products .column.main');
+
+			}
+			jQuery(window).resize(function () {
+
+			if (viewportWidth <= 767) {
+				jQuery('.page-products .sidebar.sidebar-main').insertBefore('.page-products .column.main');         
+
+			}
+			}); 
+		});
+	});
+</script>
+
+

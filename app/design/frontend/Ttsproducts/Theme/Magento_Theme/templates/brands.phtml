@@ -1,0 +1,87 @@
+<div class="home-brands">
+<div class="block-title-main home-cls-title">
+    <h2>OUR BRANDS</h2>
+    <div class="title-border"></div>
+</div>
+<div class="home-brands-inner">
+	<ul id="owl-demobrand" class="owl-carousel">
+		<li>
+			<div class="brand-item-info">
+			    <img src='<?php echo $this->getViewFileUrl('images/mytee.JPG'); ?>' alt="Mytee" />
+			</div>
+		</li>
+		<li>
+			<div class="brand-item-info">
+			    <img src='<?php echo $this->getViewFileUrl('images/SANDIA_LOGO.jpg'); ?>' alt="Sandia" />
+			</div>
+		</li>
+		<li>
+			<div class="brand-item-info">
+			    <img src='<?php echo $this->getViewFileUrl('images/kaercher_logo.png'); ?>' alt="Kaercher" />
+			</div>
+		</li>
+		<li>
+			<div class="brand-item-info">
+			    <img src='<?php echo $this->getViewFileUrl('images/logo_8.png'); ?>' alt="Nilfisk Alto" />
+			</div>
+		</li>
+		<li>
+			<div class="brand-item-info">
+			    <img src='<?php echo $this->getViewFileUrl('images/thumbs_spotnails255x80.jpg'); ?>' alt="Spotnails" />
+			</div>
+		</li>
+		<li>
+			<div class="brand-item-info">
+				<img src='<?php echo $this->getViewFileUrl('images/fasco.jpg'); ?>' alt="Fasco" />
+			</div>
+		</li>
+		<li>
+			<div class="brand-item-info">
+				<img src='<?php echo $this->getViewFileUrl('images/logo_senco.png'); ?>' alt="Senco" />
+			</div>
+		</li>
+		<li>
+			<div class="brand-item-info">
+				<img src='<?php echo $this->getViewFileUrl('images/logo_duofast.png'); ?>' alt="Duofast" />
+			</div>
+		</li>
+		<li>
+			<div class="brand-item-info">
+				<img src='<?php echo $this->getViewFileUrl('images/logo_bea.png'); ?>' alt="Bea" />
+			</div>
+		</li>
+		<li>
+			<div class="brand-item-info">
+				<img src='<?php echo $this->getViewFileUrl('images/logo_unicatch.png'); ?>' alt="Unicatch" />
+			</div>
+		</li>
+		<li>
+			<div class="brand-item-info">
+				<img src='<?php echo $this->getViewFileUrl('images/index.jpg'); ?>' alt="Amana Tool" />
+			</div>
+		</li>
+		<li>
+			<div class="brand-item-info">
+				<img src='<?php echo $this->getViewFileUrl('images/pamlogo.png'); ?>' alt="Pamlogo" />
+			</div>
+		</li>
+	</ul>
+</div>
+</div>
+
+<script>
+        require(['jquery', 'cpowlcarousel'], function () {
+            jQuery(document).ready(function () {
+               jQuery("#owl-demobrand").owlCarousel({
+                    items: 4,                    
+                    itemsDesktop: [1367, 4],					
+                    itemsDesktopSmall: [1024, 2],
+                    itemsTablet: [768, 2],
+                    itemsTabletSmall: [479, 1],
+                    pagination: false,                    
+					navigationText: ["<div class='lft-btn'><i class='fa fa-angle-left'></i></div>", "<div class='rgt-btn'><i class='fa fa-angle-right'></i></div>"],
+                    navigation: true,
+                });
+            });
+        });
+    </script>

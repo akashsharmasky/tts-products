@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="catalog.topnav">
+            <block class="Magento\Framework\View\Element\Html\Link" name="home.link">
+                <arguments>
+                    <argument name="label" xsi:type="string">Home</argument>
+                    <argument name="path" xsi:type="string">/</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link" name="about.link">
+                <arguments>
+                    <argument name="label" xsi:type="string">About Us</argument>
+                    <argument name="path" xsi:type="string">about-us</argument>
+                </arguments>
+            </block>
+			<block class="Magento\Framework\View\Element\Html\Link" name="contact.link">
+                <arguments>
+                    <argument name="label" xsi:type="string">Contact Us</argument>
+                    <argument name="path" xsi:type="string">contact</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link" name="blog.link">
+                <arguments>
+                    <argument name="label" xsi:type="string">Blog</argument>
+                    <argument name="path" xsi:type="string">blog</argument>
+                </arguments>
+            </block>			
+       </referenceContainer>
+	    <referenceContainer name="footer">
+            <block class="Magento\Cms\Block\Block" name="block_identifier">
+				<arguments>
+				  <argument name="block_id" xsi:type="string">footer_container</argument>
+				</arguments>
+			</block>
+        </referenceContainer>
+	   <referenceContainer name="header.container">
+            <block class="Magento\Framework\View\Element\Template"  name="customtext" template="Magento_Theme::customtext.phtml" after="-" />
+       </referenceContainer>
+
+        <referenceContainer name="page.top">
+            <container name="title-width-breadcrumbs" label="Title With Breadcrumbs" htmlTag="div" htmlClass="title-width-breadcrumbs" after="-"> 
+                <block class="Magento\Theme\Block\Html\Title" before="-" name="page.main.title" template="Magento_Theme::html/title.phtml"/>
+                <block class="Magento\Theme\Block\Html\Breadcrumbs" name="breadcrumbs" as="breadcrumbs"/>
+            </container> 
+        </referenceContainer>
+        
+	   <move element="customtext" destination="header.panel"  before="-"/>
+	   <move element="copyright" destination="before.body.end"  before="-"/>
+	   <referenceBlock name="report.bugs" remove="true"/>
+	   <referenceBlock name="store_language" remove="true"/>
+	   <referenceBlock name="store_switcher" remove="true"/>
+	   <referenceBlock name="form.subscribe" remove="true"/>
+	   <referenceBlock name="footer_links" remove="true"/>
+	   <referenceBlock name="wish-list-link" remove="true" />
+	   <referenceBlock name="my-account-link" remove="true" />
+	   <referenceBlock name="catalog.compare.sidebar" remove="true" />
+	   <referenceBlock name="wishlist_sidebar" remove="true" />
+       <referenceBlock name="store.settings" remove="true" />
+       
+    </body>
+</page>

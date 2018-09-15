@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="mage/gallery/gallery.css"/>
+    </head>
+    <update handle="catalog_product_opengraph" />
+    <update handle="page_calendar"/>
+    <body>
+        <referenceBlock name="product.info.sku" remove="true" />
+        <referenceBlock name="view.addto.compare" remove="true" />
+        <referenceBlock name="product.info.mailto" remove="true" />
+        <referenceBlock name="view.addto.wishlist" remove="true" />
+        <move element="product.info.overview" destination="product.info.main"  after="product.info.price"/>
+        
+        <move element="product.price.final" destination="product.info.price"  after="product.info.review"/>
+        <move element="product.info.review" destination="product.info.price"  before="product.info.stock.sku"/>
+        
+        
+         
+    </body>
+</page>
